@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ACC Investment</title>
+
+<style>
+body {
+  background:#0b0b1d;
+  color:gold;
+  font-family:Poppins,sans-serif;
+  text-align:center;
+}
+.container{margin-top:100px}
+.btn{
+  background:#00ff88;
+  padding:12px 20px;
+  border-radius:10px;
+  text-decoration:none;
+  color:#000;
+  font-weight:bold;
+}
+.btn:hover{background:gold}
+</style>
+</head>
+
+<body>
+<div class="container">
+  <h1>Witamy w ACC Investment</h1>
+  <p>Witaj <b>Helena</b></p>
+  <p>Aktualny zysk: <b id="profit">15000</b> PLN</p>
+
+  <a class="btn" id="withdrawBtn">Wypłać środki</a>
+</div>
+
+<script>
+const profit = 15000;
+document.getElementById("profit").innerText = profit;
+
+document.getElementById("withdrawBtn").onclick = () => {
+  localStorage.setItem("withdrawAmount", profit);
+  location.href = "withdrawal.html";
+};
+</script>
+</body>
+</html>
