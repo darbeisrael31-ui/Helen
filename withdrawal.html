@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>Wypłata środków</title>
+
+<style>
+body{background:#0b0b1d;color:gold;font-family:Poppins,sans-serif;display:flex;justify-content:center;align-items:center;height:100vh}
+.container{background:#0009;padding:25px;border-radius:15px;width:330px}
+input,select,button{width:100%;padding:8px;margin:6px 0;border-radius:8px;border:none}
+button{background:#00ff88;font-weight:bold}
+.popup{display:none;position:fixed;inset:0;background:#000c;justify-content:center;align-items:center}
+.popup-content{background:#111;padding:20px;border-radius:10px;color:#0f0;text-align:center}
+</style>
+</head>
+
+<body>
+<div class="container">
+<h3>Formularz wypłaty</h3>
+
+<select id="bank">
+<option value="">Wybierz bank</option>
+<option>PKO Bank Polski</option>
+<option>mBank</option>
+<option>Bank Pekao</option>
+<option>Santander Bank Polska</option>
+<option>ING Bank Śląski</option>
+</select>
+
+<input id="branch" placeholder="Oddział banku">
+<input id="accnum" placeholder="Numer konta">
+
+<input id="amount" readonly>
+
+<button onclick="submitWithdraw()">Wyślij wniosek</button>
+</div>
+
+<div class="popup" id="popup">
+  <div class="popup-content">
+    <p id="msg"></p>
+    <button onclick="closePop()">OK</button>
+  </div>
+</div>
+
+<script>
+const amount = localStorage.getItem("withdrawAmount");
+document.getElementById("amount").value = amount + " PLN";
+
+function submitWithdraw(){
+  if(!bank.value || !branch.value || !accnum.value){
+    alert("Proszę wypełnić wszystkie pola.");
+    return;
+  }
+  document.getElementById("msg").innerText =
+    "Twój wniosek o wypłatę został pomyślnie wysłany do realizacji.";
+  popup.style.display="flex";
+}
+
+function closePop(){
+  popup.style.display="none";
+}
+</script>
+</body>
+</html>
